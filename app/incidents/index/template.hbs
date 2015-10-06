@@ -1,11 +1,13 @@
-<h2>Incidents Page</h2>
+<h3>Status Messages</h3>
 
 <ul>
   {{#each model as |incident|}}
     <li>
-      <h4>{{incident.level}}</h4>
-      <p>{{incident.message}}</p>
-      <p>{{incident.time}}</p>
+      <h4>{{incident.time}}</h4>
+      <div>
+        <p>{{incident.level}}</p>
+        <p>{{incident.message}}</p>
+      </div>
     </li>
   {{/each}}
 </ul>
