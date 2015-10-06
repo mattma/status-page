@@ -1,0 +1,11 @@
+<h2>Incidents Page</h2>
+
+<ul>
+  {{#each model as |incident|}}
+    <li>
+      <h4>{{incident.level}}</h4>
+      <p>{{incident.message}}</p>
+      <p>{{incident.time}}</p>
+    </li>
+  {{/each}}
+</ul>

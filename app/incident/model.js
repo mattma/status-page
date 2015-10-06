@@ -4,7 +4,8 @@ import DS from 'ember-data';
 let attr = DS.attr;
 
 export default DS.Model.extend({
-  level: attr('string'),
-  message: attr('string'),
-  time: attr('date')
+  incidents: attr()
+  // level: attr(),
+  // message: attr(),
+  // time: attr()
 });
