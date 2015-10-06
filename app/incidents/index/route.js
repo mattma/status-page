@@ -1,23 +1,15 @@
 import Ember from 'ember';
+import ajax from 'incident/utils/ajax/ajax';
 
 export default Ember.Route.extend({
   model () {
-    let a = {
-     "incidents":[
-        {
-           "id":1444160477120134180,
-           "level":"critical",
-           "message":"server fucked up",
-           "time":1444160477120134180
-        },
-        {
-           "id":1444160486831113253,
-           "level":"critical",
-           "message":"server has some issues",
-           "time":1444160486831113253
-        }
-     ]
+    const url = '/incidents/16714';
+    const opts =  {
+      type: "GET",
     };
-    return a.incidents;
+
+    return ajax(url, opts)
+      .then(resp => resp.incidents)
+      .catch(err => console.log('err: ', err));
   }
 });
