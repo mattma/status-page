@@ -11,7 +11,7 @@ for (var dev in ifaces) {
   });
 }
 
-const localhost = '192.168.0.8';
+const localhost = '10.0.1.20';
 
 module.exports = function(environment) {
   var ENV = {
