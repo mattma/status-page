@@ -1,14 +1,11 @@
 <h3>Status Messages</h3>
 
-{{log model}}
-
-<ul>
+<ul class="status-messages">
   {{#each model as |incident|}}
     <li>
       <h4>{{incident.time}}</h4>
       <div>
-        <p>{{incident.level}}</p>
-        <p>{{incident.message}}</p>
+        <p class="{{classnameSwitch incident.level 'critical' 'warning'}} status-message">{{incident.message}}</p>
       </div>
     </li>
   {{/each}}

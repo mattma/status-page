@@ -66,11 +66,11 @@ body:before { content:""; float:left; height:100%; margin-top:-32767px; width:0;
 h1     { font-size:2.6em;}
 h2     { font-size:2.4em;}
 h3     { font-size:2.1em;}
-h4     { font-size:1.9em;}
+h4     { font-size:1.8em;}
 h5     { font-size:1.7em;}
 h6     { font-size:1.5em;}
-h1, h2 { font-weight:700; line-height:1; color:rgb(35, 35, 35); text-rendering: optimizelegibility;}
-h3, h4, h5, h6 { font-weight:300; line-height:1; color:rgb(102,102,102); text-rendering: optimizelegibility; }
+h1, h2 { font-weight:700; line-height:1; color:rgb(35, 35, 35); text-rendering: optimizelegibility; -webkit-font-smoothing: antialiased;}
+h3, h4, h5, h6 { font-weight:300; line-height:1; color:rgb(51 51 51); text-rendering: optimizelegibility; -webkit-font-smoothing: antialiased;}
 h1 img, h2 img, h3 img, h4 img, h5 img, h6 img {margin:0;}
 
 
@@ -118,12 +118,12 @@ a:hover     { text-decoration: none; }
 /* ================= */
 
 /* Most popular fontsize for body is 13px by Smashing Mag */
-p         { margin: 0; font-family: 'Roboto Condensed', "Helvetica Neue", Helvetica, Arial, sans-serif; }
 p
 ,fieldset
 ,th, td
 ,li, li a
 ,dt, dd   { line-height:1.7em; font-size:1.4em; color:rgb(102,102,102); font-weight:300; } /* ==CHANGE FOR PROJECT NEED== */
+p         { margin: 0; font-weight: 400; font-family: 'Roboto Condensed', "Helvetica Neue", Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased;}
 
 h1 a, h2 a, h3 a, h4 a, h5 a, h6 a,
 p a, p span, p label, p input,
