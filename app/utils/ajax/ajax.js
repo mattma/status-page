@@ -8,7 +8,7 @@ export default function(url, options){
 
   url = `${config.apiUrl}/${config.api.current}${url} `;
 
-  return new Ember.RSVP.Promise(function(resolve, reject){
+  return new Ember.RSVP.Promise((resolve, reject) => {
     options.dataType = 'json';
     options.success = Ember.run.bind(null, resolve);
     options.error = Ember.run.bind(null, reject);

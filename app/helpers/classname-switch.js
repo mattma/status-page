@@ -1,8 +1,8 @@
 import Ember from 'ember';
 
 export function classnameSwitch(params/*, hash*/) {
-  console.log('params: ', params);
   let ret;
+
   switch (params[0]) {
     case params[1]:
       ret = params[1];
