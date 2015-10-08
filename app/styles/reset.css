@@ -122,8 +122,8 @@ p
 ,fieldset
 ,th, td
 ,li, li a
-,dt, dd   { line-height:1.7em; font-size:1.4em; color:rgb(102,102,102); font-weight:300; } /* ==CHANGE FOR PROJECT NEED== */
-p         { margin: 0; font-weight: 400; font-family: 'Roboto Condensed', "Helvetica Neue", Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased;}
+,dt, dd   { line-height:1.7em; font-size:1.4em; color:rgb(102,102,102); font-weight:400; } /* ==CHANGE FOR PROJECT NEED== */
+p         { margin: 0; font-family: 'Roboto Condensed', "Helvetica Neue", Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased;}
 
 h1 a, h2 a, h3 a, h4 a, h5 a, h6 a,
 p a, p span, p label, p input,

@@ -1,5 +1,6 @@
 .status-messages
   +margin(t, 25)
+  +overflow(h)
 
   li
     +box(100%, 100%)
@@ -14,7 +15,7 @@
     +border(b, #e8e8e8)
 
   p
-    +fsize(1.6)
+    +fsize(1.5)
 
   .status-time
     +grid-column(3)
@@ -29,3 +30,22 @@
 
     &.critical
       +color(#c30)
+
+/*
+ * Pagination
+ */
+.pagination
+  ul
+    +box(100%, 38)
+    +paddings(8, 15)
+    +margin(b, 30)
+    +borders(#e8e8e8)
+    border-radius: 5px
+
+  a
+    +fsize(1.2)
+    +fweight(700)
+    +color(#39c)
+
+    &:hover
+      +color(#036)
