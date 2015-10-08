@@ -1,51 +1,9 @@
-.status-messages
-  +margin(t, 25)
-  +overflow(h)
+.status
+  div
+    +margin(b, 30)
 
-  li
-    +box(100%, 100%)
-    +margin(b, 20)
-    +float(l)
-
-  h4
-    +roboto(700)
-    +color(51 51 51)
-    +padding(b, 8)
-    +margin(b, 8)
-    +border(b, #e8e8e8)
+    &:first-child
+      +margin(t, 25)
 
   p
-    +fsize(1.5)
-
-  .status-time
-    +grid-column(3)
-    +color(#999)
-
-  .status-message
-    +grid-column(9)
-    +color(#396)
-
-    &.warning
-      +color(#f29d50)
-
-    &.critical
-      +color(#c30)
-
-/*
- * Pagination
- */
-.pagination
-  ul
-    +box(100%, 38)
-    +paddings(8, 15)
-    +margin(b, 30)
-    +borders(#e8e8e8)
-    border-radius: 5px
-
-  a
-    +fsize(1.2)
-    +fweight(700)
-    +color(#39c)
-
-    &:hover
-      +color(#036)
+    +margin(b, 15)
