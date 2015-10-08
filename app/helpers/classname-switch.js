@@ -17,7 +17,7 @@ export function classnameSwitch(params/*, hash*/) {
       ret = "";
   }
 
-  return ret;
+  return ret.toLowerCase();
 }
 
 export default Ember.Helper.helper(classnameSwitch);

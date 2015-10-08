@@ -6,7 +6,9 @@ var Router = Ember.Router.extend({
 });
 
 Router.map(function() {
-  this.route('incidents', {}, function() {});
+  this.route('incidents', {}, function() {
+    this.route('index', {path: '/:range'});
+  });
 });
 
 export default Router;

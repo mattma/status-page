@@ -2,8 +2,8 @@ import Ember from 'ember';
 import ajax from 'incident/utils/ajax/ajax';
 
 export default Ember.Route.extend({
-  model () {
-    const url = '/incidents/16716';
+  model (params) {
+    const url = `/incidents/?${params.range}`;
     const opts =  {
       type: "GET",
     };
