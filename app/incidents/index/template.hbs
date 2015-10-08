@@ -3,8 +3,9 @@
 <ul class="status-messages">
   {{#each model as |incident|}}
     <li>
-      <h4>{{incident.time}}</h4>
+      <h4>{{timeFormat incident.time}}</h4>
       <div>
+        <p class="status-time">{{timeFormat incident.time "#hh#:#mm#:#ss#"}} PDT</p>
         <p class="{{classnameSwitch incident.level 'critical' 'warning'}} status-message">{{incident.message}}</p>
       </div>
     </li>

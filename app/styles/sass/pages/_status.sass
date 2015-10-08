@@ -2,7 +2,9 @@
   +margin(t, 25)
 
   li
+    +box(100%, 100%)
     +margin(b, 20)
+    +float(l)
 
   h4
     +roboto(700)
@@ -11,9 +13,16 @@
     +margin(b, 8)
     +border(b, #e8e8e8)
 
-  .status-message
-    +color(#396)
+  p
     +fsize(1.6)
+
+  .status-time
+    +grid-column(3)
+    +color(#999)
+
+  .status-message
+    +grid-column(9)
+    +color(#396)
 
     &.warning
       +color(#f29d50)
