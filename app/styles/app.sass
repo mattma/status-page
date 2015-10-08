@@ -9,16 +9,16 @@ $helvetica: "Helvetica Neue", "HelveticaNeue", Helvetica, Arial, sans-serif
 
 @import 'sass/sections/_init'
 
-@import "sass/components/_init"
-
 html, body
   width: 100%
   height: 100%
 
 body
   background: $white
+  +width(80%)
   min-height: 100%
   +ffamily($helvetica)
+  margin: 0 auto
 
   &>div
     height: 100%
