@@ -78,6 +78,6 @@ export default Ember.Component.extend({
     let canvas = container.canvas().chart("FinalChart", container.info());
 
     // render it with some data
-    canvas.draw(data, function(data) { return data });
+    canvas.draw(data, data => data);
   }
 });
