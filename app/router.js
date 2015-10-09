@@ -9,7 +9,8 @@ Router.map(function() {
   this.route('incidents', function() {
     this.route('index', {path: '/:range'});
   });
-  this.route('status', {});
+
+  this.route('status', {path: '/status/:range'}, function() {});
 });
 
 export default Router;

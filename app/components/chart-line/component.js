@@ -1,36 +1,68 @@
 import Ember from 'ember';
+import format from 'incident/utils/time/format';
 
-function domain(data, context) {
-  // Setup xScale domain range
-  context.xScale.domain( [ 0, d3.max(data, function(d, i){ return d.x }) ]);
-  context.yScale.domain([ 0, d3.max(data, function(d, i){ return d.y }) ]);
+function parsedDate(second) {
+  let date = new Date(second);
+  let parseDate = d3.time.format('%Y-%m-%d').parse;
+  let formattedDate = format.custom(date, "#YYYY#-#mm#-#DD#");
+  return parseDate(formattedDate);
 }
+
+function domain(data, chart) {
+  // fixing the data is not loading yet problem
+  if (Ember.isEmpty(data)) {
+      return false;
+  }
+
+  let minDate = d3.min(data, d => parsedDate(d[0]));
+  let maxDate = d3.max(data, d => parsedDate(d[0]));
+
+  let _w = +(chart.base.attr('width'));
+  // Setup xScale domain range
+  chart.xScale.domain([minDate, maxDate]).range([0, _w]);
+
+  // figure out the lowest min/highest max value on both y-axis
+  let dataMax = d3.max(data, d => +(d[1]));
+  chart.yScale.domain([0, dataMax]);
+}
+
+d3.chart('Line').extend('StatusLine', {
+  onDataBind: function (data) {
+    var chart = chart || this;
+
+    chart.line.x(d => chart.xScale(parsedDate(d[0])));
+
+    domain(data, chart);
+
+    chart.line.y(d => chart.yScale(+(d[1])));
+  }
+});
 
 d3.chart('Axis').extend('MyAxis', {
   onDataBind: function(data){
     var chart = chart || this;
+
+    chart.xAxis.tickPadding(10); //.tickFormat(customTimeFormat);
+    chart.xAxis.ticks(5);
+    chart.yAxis.ticks(2);
+
     domain(data, chart);
   }
 });
 
 d3.chart("FinalChart", {
   initialize: function(containerInfo) {
-    // Used for the clipPath object
-    // var clip =  this.mixin("Clip",  this.base);
-    // clip.box(300, 600).xy(0, 50);
-
     var axis =  this.mixin("MyAxis",  this.base.append("g").classed('axisgroup', true), {
       info: containerInfo,
       guide: true,
       ticksOnResize: true
     });
 
-    axis
-      .xLabel('Line Chart X', 0, 20 )
-      .yLabel('Y Labels', 15, 20);
+    axis.xLabel('ms', 0, 20);
 
-    this.mixin("Line", this.base.append('g').classed('lines12', true), {
-      info: containerInfo
+    this.mixin("StatusLine", this.base.append('g').classed('lines', true), {
+      info: containerInfo,
+      x: 'time'
     });
   }
 });
@@ -38,7 +70,8 @@ d3.chart("FinalChart", {
 export default Ember.Component.extend({
   didInsertElement () {
     let container = d3.ma.container('#vis');
-    let data= this.get('data');
+    let dataset= this.get('data');
+    let data = dataset.values;
 
     container.box(500, 300); // .resize();
 
@@ -46,8 +79,5 @@ export default Ember.Component.extend({
 
     // render it with some data
     canvas.draw(data, function(data) { return data });
-
-    // In plain d3, this works too
-    // d3.select('.canvas').chart("FinalChart", container.info() ).draw(data);
   }
 });
