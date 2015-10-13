@@ -59,12 +59,14 @@ export default {
     return setRange([week_start_timestamp, week_end_timestamp]);
   },
 
-  PASS_DAY () {
+  PREVIOUS_WEEK () {
+    console.log('hello');
+    // let today_start_timestamp = new Date(_today().setHours(0, 0, 0, 0));
+    // let week_start_timestamp = today_start_timestamp.setDate(
+    //   today_start_timestamp.getDate() - (today_start_timestamp.getDay() - start));
+    // let week_end_timestamp = _today().getTime();
 
-  },
-
-  PASS_WEEK () {
-
+    // return setRange([week_start_timestamp, week_end_timestamp]);
   },
 
   PASS_MONTH () {

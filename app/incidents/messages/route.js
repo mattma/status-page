@@ -11,6 +11,12 @@ export default Ember.Route.extend({
         let current = Time.CURRENT_WEEK();
         range = `since=${current[0]}&until=${current[1]}`;
         break;
+      case 'previous_week':
+        let previous = Time.PREVIOUS_WEEK();
+        console.log('previous: ', previous);
+        range = `since=${previous[0]}&until=${previous[1]}`;
+        console.log('range: ', range);
+        break;
       default:
         range = 'since=16703&until=16718';
     }

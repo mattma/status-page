@@ -6,7 +6,7 @@ var Router = Ember.Router.extend({
 });
 
 Router.map(function() {
-  this.route('incidents', function() {
+  this.route('incidents', {}, function() {
     this.route('messages', {path: '/:range'});
   });
 
