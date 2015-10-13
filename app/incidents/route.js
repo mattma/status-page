@@ -4,6 +4,6 @@ import Time from 'incident/utils/time/constant';
 
 export default Ember.Route.extend({
   beforeModel () {
-    this.transitionTo('incidents.messages', 'since=16703&until=16718');
+    this.transitionTo('incidents.messages', 'current_week');
   }
 });

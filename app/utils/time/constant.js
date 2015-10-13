@@ -11,6 +11,10 @@ function _today (date) {
   return date ? new Date(date) : new Date();
 }
 
+function setRange(range) {
+  return range.map(time => parseInt(time / 1000 / 60 / 60 / 24));
+}
+
 export default {
   // return current time in millisecond
   NOW () {
@@ -52,7 +56,7 @@ export default {
       today_start_timestamp.getDate() - (today_start_timestamp.getDay() - start));
     let week_end_timestamp = _today().getTime();
 
-    return [week_start_timestamp, week_end_timestamp];
+    return setRange([week_start_timestamp, week_end_timestamp]);
   },
 
   PASS_DAY () {

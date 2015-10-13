@@ -4,10 +4,18 @@ import Time from 'incident/utils/time/constant';
 
 export default Ember.Route.extend({
   model (params) {
-    console.log('hello world 12');
-    let today = Time.CURRENT_WEEK();
-    console.log('today: ', today);
-    const url = `/incidents/?${params.range}`;
+    let range;
+
+    switch (params.range) {
+      case 'current_week':
+        let current = Time.CURRENT_WEEK();
+        range = `since=${current[0]}&until=${current[1]}`;
+        break;
+      default:
+        range = 'since=16703&until=16718';
+    }
+
+    const url = `/incidents/?${range}`;
     const opts =  {
       type: "GET",
     };
