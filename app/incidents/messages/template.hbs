@@ -1,16 +1,5 @@
 <h3>Status Messages</h3>
 
-<ul class="status-messages">
-  {{#each model key="@index" as |incidents ind|}}
-    <li>
-      <h4>{{timeFormat incidents.[0].time}}</h4>
+{{status-message model=model}}
 
-      {{#each incidents key="@index" as |incident|}}
-        <div>
-          <p class="status-time">{{timeFormat incident.time "#hh#:#mm#:#ss#"}} PDT</p>
-          <p class="{{classnameSwitch incident.level 'Critical' 'Warning'}} status-message">{{incident.message}}</p>
-        </div>
-      {{/each}}
-    </li>
-  {{/each}}
-</ul>
+{{status-pagination }}
