@@ -4,6 +4,7 @@ import Time from 'incident/utils/time/constant';
 
 export default Ember.Route.extend({
   model (params) {
+    console.log('hello world 12');
     let today = Time.CURRENT_WEEK();
     console.log('today: ', today);
     const url = `/incidents/?${params.range}`;
