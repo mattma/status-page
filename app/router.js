@@ -7,7 +7,7 @@ var Router = Ember.Router.extend({
 
 Router.map(function() {
   this.route('incidents', {}, function() {
-    this.route('messages', {path: '/:range'});
+    this.route('index', {path: '/:range'});
   });
 
   this.route('status', {path: '/status/:range'}, function() {});

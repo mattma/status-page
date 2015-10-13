@@ -1,3 +1,5 @@
+import moment from 'moment';
+
 // Polyfill to handle `Date.now` is not a method
 (function () {
   if (!Date.now) {
@@ -12,7 +14,7 @@ function _today (date) {
 }
 
 function setRange(range) {
-  return range.map(time => parseInt(time / 1000 / 60 / 60 / 24));
+  return range.map(time => parseInt(time / 60 / 60 / 24));
 }
 
 export default {
@@ -49,14 +51,16 @@ export default {
    * Find out the current week
    * @param {Number} start [description]
    */
-  CURRENT_WEEK (start=0) {
-    // Calcing the starting point
-    let today_start_timestamp = new Date(_today().setHours(0, 0, 0, 0));
-    let week_start_timestamp = today_start_timestamp.setDate(
-      today_start_timestamp.getDate() - (today_start_timestamp.getDay() - start));
-    let week_end_timestamp = _today().getTime();
+  CURRENT_WEEK (timezone='America/Los_Angeles') {
+    // current week range
+    const start = moment().utcOffset(timezone).startOf('week').unix();
+    const end = moment().utcOffset(timezone).unix();
 
-    return setRange([week_start_timestamp, week_end_timestamp]);
+    // previous week range
+    const previous_start = moment().utcOffset(timezone).startOf('week').subtract(1, 'weeks').unix();
+    const previous_end = moment().utcOffset(timezone).startOf('week').subtract(1, 'day').unix();
+
+    return setRange([start, end, previous_start, previous_end]);
   },
 
   PREVIOUS_WEEK () {
