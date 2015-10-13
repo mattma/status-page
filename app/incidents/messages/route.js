@@ -4,30 +4,36 @@ import Time from 'incident/utils/time/constant';
 
 export default Ember.Route.extend({
   model (params) {
-    let range;
+    let currentRange, previousRange, nextRange;
 
     switch (params.range) {
       case 'current_week':
         let current = Time.CURRENT_WEEK();
-        range = `since=${current[0]}&until=${current[1]}`;
+        currentRange = `since=${current[0]}&until=${current[1]}`;
         break;
       case 'previous_week':
         let previous = Time.PREVIOUS_WEEK();
         console.log('previous: ', previous);
-        range = `since=${previous[0]}&until=${previous[1]}`;
-        console.log('range: ', range);
+        currentRange = `since=${previous[0]}&until=${previous[1]}`;
+        console.log('currentRange: ', currentRange);
         break;
       default:
-        range = 'since=16703&until=16718';
+        currentRange = 'since=16703&until=16718';
     }
 
-    const url = `/incidents/?${range}`;
+    const url = `/incidents/?${currentRange}`;
     const opts =  {
       type: "GET",
     };
 
     return ajax(url, opts)
-      .then(resp => resp.incidents)
+      .then(resp => {
+        resp.pagination = {
+          previous: 'previous',
+          next: 'next'
+        };
+        return resp;
+      })
       .catch(err => console.log('err: ', err));
   }
 });
