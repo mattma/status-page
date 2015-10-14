@@ -1,13 +1,14 @@
 import Ember from 'ember';
 import ajax from 'incident/utils/ajax/ajax';
 import links from 'incident/utils/url/links';
+import time from 'incident/utils/time/constant';
 
 export default Ember.Route.extend({
   model (params) {
     let range = params.range;
     let endDay;
     if (range === 'current') {
-      endDay = new Date();
+      endDay = time.nanoUnix(new Date());
     } else {
       if (range.includes('&until=')) {
         endDay = range.split('=')[2];
@@ -27,6 +28,7 @@ export default Ember.Route.extend({
           next: weekLinks.next
         };
         resp.incidents = resp.incidents.reverse();
+        resp.endDate = endDay;
         return resp;
       })
       .catch(err => {

@@ -5,7 +5,14 @@ export function timeFormat(params/*, hash*/) {
   if (!params[0]) {
     return ;
   }
-  const date = new Date(params[0] / 1000 / 1000);
+  let date;
+
+  if (params[2] || params[2] === 0) {
+    date = new Date((params[0] - params[2]) * 24 * 60 * 60 * 1000);
+  } else {
+    date = new Date(params[0] / 1000 / 1000);
+  }
+
   const formatString = params[1] || "#MMM# #DD#, #YYYY#";
   return format.custom(date, formatString);
 }

@@ -1,12 +1,16 @@
 <ul class="status-messages">
-  {{#each model key="@index" as |incidents|}}
+  {{#each model key="@index" as |incidents index|}}
     <li>
-      <h4>{{timeFormat incidents.[0].time}}</h4>
-
+      <h4>{{timeFormat endDate "#MMM# #DD#, #YYYY#" index}}</h4>
       {{#each incidents key="@index" as |incident|}}
         <div>
           <p class="status-time">{{timeFormat incident.time "#hh#:#mm#:#ss#"}} PDT</p>
           <p class="{{classnameSwitch incident.level 'Critical' 'Warning'}} status-message">{{incident.message}}</p>
+        </div>
+      {{else}}
+        <div>
+          <p class="status-time">00:00 PDT</p>
+          <p class="status-message">All systems reporting at 100%</p>
         </div>
       {{/each}}
     </li>
