@@ -18,6 +18,11 @@ function setRange(range) {
 }
 
 export default {
+  nanoUnix (date) {
+    let nanoUnix = moment(date).unix()  / 60 / 60 / 24;
+    return parseInt(nanoUnix);
+  },
+
   // return current time in millisecond
   NOW () {
     return _today();
@@ -49,7 +54,6 @@ export default {
 
   /**
    * Find out the current week
-   * @param {Number} start [description]
    */
   CURRENT_WEEK (timezone='America/Los_Angeles') {
     // current week range
@@ -61,23 +65,5 @@ export default {
     const previous_end = moment().utcOffset(timezone).startOf('week').subtract(1, 'day').unix();
 
     return setRange([start, end, previous_start, previous_end]);
-  },
-
-  PREVIOUS_WEEK () {
-    console.log('hello');
-    // let today_start_timestamp = new Date(_today().setHours(0, 0, 0, 0));
-    // let week_start_timestamp = today_start_timestamp.setDate(
-    //   today_start_timestamp.getDate() - (today_start_timestamp.getDay() - start));
-    // let week_end_timestamp = _today().getTime();
-
-    // return setRange([week_start_timestamp, week_end_timestamp]);
-  },
-
-  PASS_MONTH () {
-
-  },
-
-  PASS_YEAR () {
-
-  },
+  }
 };

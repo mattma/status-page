@@ -1,14 +1,22 @@
 <section class="pagination">
   <ul>
     <li>
-      {{#link-to 'incidents.index' model.previous class="left"}}
-        « Previous Week
-      {{/link-to}}
+      {{#if model.previous}}
+        {{#link-to 'incidents.index' model.previous class="left"}}
+          « Previous Week
+        {{/link-to}}
+      {{else}}
+        <p class="left">« Previous Week</p>
+      {{/if}}
     </li>
     <li>
-      {{#link-to 'incidents.index' model.next class="right"}}
-        Next Week »
-      {{/link-to}}
+      {{#if model.next}}
+        {{#link-to 'incidents.index' model.next class="right"}}
+          Next Week »
+        {{/link-to}}
+      {{else}}
+        <p class="right">Next Week »</p>
+      {{/if}}
     </li>
   </ul>
 </section>

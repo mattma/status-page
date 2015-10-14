@@ -1,25 +1,21 @@
 import Ember from 'ember';
 import ajax from 'incident/utils/ajax/ajax';
-import Time from 'incident/utils/time/constant';
+import links from 'incident/utils/url/links';
 
 export default Ember.Route.extend({
   model (params) {
-    console.log('params: ', params);
-    let range;
-    let previousRange;
-    let nextRange;
-
-    switch (params.range) {
-      case 'current':
-        const rangeArr = Time.CURRENT_WEEK();
-        range = `since=${rangeArr[0]}&until=${rangeArr[1]}`;
-        previousRange = `since=${rangeArr[2]}&until=${rangeArr[3]}`;
-        break;
-      default:
-        range = params.range;
+    let range = params.range;
+    let endDay;
+    if (range === 'current') {
+      endDay = new Date();
+    } else {
+      if (range.includes('&until=')) {
+        endDay = range.split('=')[2];
+      }
     }
 
-    const url = `/incidents/?${range}`;
+    const weekLinks = links.getWeekLinks(endDay);
+    const url = `/incidents/?${weekLinks.current}`;
     const opts =  {
       type: "GET",
     };
@@ -27,11 +23,14 @@ export default Ember.Route.extend({
     return ajax(url, opts)
       .then(resp => {
         resp.pagination = {
-          previous: previousRange,
-          next: null
+          previous: weekLinks.previous,
+          next: weekLinks.next
         };
         return resp;
       })
-      .catch(err => console.log('err: ', err));
+      .catch(err => {
+        console.log('err: ', err);
+        this.transitionTo('incidents.index', 'current');
+      });
   }
 });
