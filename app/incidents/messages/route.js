@@ -31,7 +31,7 @@ export default Ember.Route.extend({
       })
       .catch(err => {
         console.log('err: ', err);
-        this.transitionTo('incidents.index', 'current');
+        this.transitionTo('incidents.messages', 'current');
       });
   }
 });

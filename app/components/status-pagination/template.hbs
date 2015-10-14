@@ -2,7 +2,7 @@
   <ul>
     <li>
       {{#if model.previous}}
-        {{#link-to 'incidents.index' model.previous class="left"}}
+        {{#link-to 'incidents.messages' model.previous class="left"}}
           « Previous Week
         {{/link-to}}
       {{else}}
@@ -11,7 +11,7 @@
     </li>
     <li>
       {{#if model.next}}
-        {{#link-to 'incidents.index' model.next class="right"}}
+        {{#link-to 'incidents.messages' model.next class="right"}}
           Next Week »
         {{/link-to}}
       {{else}}
