@@ -26,6 +26,7 @@ export default Ember.Route.extend({
           previous: weekLinks.previous,
           next: weekLinks.next
         };
+        resp.incidents = resp.incidents.reverse();
         return resp;
       })
       .catch(err => {

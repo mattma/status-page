@@ -4,13 +4,12 @@ import time from 'incident/utils/time/constant';
 export default {
   getWeekLinks (date) {
     let today;
-    let hasNextWeek = true;
+    const TODAY = time.nanoUnix(new Date());
 
     // Current week query. since it sends back as Date
     switch (Ember.typeOf(date)) {
       case 'date':
         today = time.nanoUnix(date);
-        hasNextWeek = false;
         break;
       case 'string':
         today = parseInt(date);
@@ -28,7 +27,7 @@ export default {
     return {
       current: `since=${ago7days}&until=${today}`,
       previous: `since=${ago14days}&until=${ago8days}`,
-      next: hasNextWeek ? `since=${tomorrow}&until=${next8days}` : null
+      next: TODAY === today ? null : `since=${tomorrow}&until=${next8days}`
     };
   }
 };
