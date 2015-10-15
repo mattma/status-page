@@ -7,13 +7,14 @@ export default Ember.Route.extend({
       return ;
     }
 
+    const queryRange = params.range;
     const url = `/stats/`;
     const opts =  {
       type: "GET",
     };
     let range;
 
-    switch (params.range) {
+    switch (queryRange) {
       case 'pass_day':
         range = 'start=2015-10-13T20:10:30.781Z&end=2015-10-14T20:11:00.781Z&step=300s';
         break;
@@ -35,11 +36,15 @@ export default Ember.Route.extend({
         return Ember.RSVP.Promise.all(urls.map(u => ajax(u, opts)))
           .then(data => {
             // merge the data stats name into the return Promise array
-            return data.map((datum, index) => {
+            let dataset = data.map((datum, index) => {
               datum.name = stats[index];
-              datum.range = params.range;
               return datum;
             });
+
+            return {
+              dataset: dataset,
+              range: queryRange
+            }
           });
       })
       .catch(err => console.log('err: ', err));
