@@ -24,7 +24,9 @@
         <h3>App Server Availability</h3>
       </div>
       <div>
-        {{chart-line data=model}}
+        {{#each model as |data index|}}
+          {{chart-line data=data index=index}}
+        {{/each}}
       </div>
     </div>
   </div>

@@ -7,13 +7,18 @@ export default Ember.Route.extend({
       return ;
     }
 
-    const url = `/stats/up?${params.range}`;
+    // const url = `/stats/up?${params.range}`;
+    const url = `/stats/`;
     const opts =  {
       type: "GET",
     };
 
     return ajax(url, opts)
-      .then(resp => resp)
+      .then(resp => {
+        let urls = resp.stats.map(item => `/stats/${item}?${params.range}`);
+        return Ember.RSVP.Promise.all(urls.map(u => ajax(u, opts)))
+      })
+      .then(data => data)
       .catch(err => console.log('err: ', err));
   }
 });

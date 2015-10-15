@@ -69,7 +69,7 @@ d3.chart("FinalChart", {
 
 export default Ember.Component.extend({
   didInsertElement () {
-    let container = d3.ma.container('#vis');
+    let container = d3.ma.container(`#vis-${this.get('index')}`);
     let dataset= this.get('data');
     let data = dataset.values;
 
