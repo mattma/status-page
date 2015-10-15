@@ -4,6 +4,7 @@ import Ember from 'ember';
  * Change text into a different format by passing the formatter
  * @params 0: the text that pass into the function
  * @params 1: what output you want the text to be
+ * @params 2: Only used in split function, it is the split separator to be used
  * @return String
  *
  * ex: {{changeCase "hello-world" "class"}}
@@ -32,6 +33,9 @@ export function changeCase(params/*, hash*/) {
       break;
     case 'decamel':
       string = Ember.String.decamelize(params[0]);
+      break;
+    case 'split':
+      string = Ember.String.capitalize(params[0].split(params[2]).join(' '));
       break;
     default:
       string = params[0].toLowerCase();
