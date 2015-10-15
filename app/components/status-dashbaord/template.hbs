@@ -1,0 +1,23 @@
+<ul class="tabs">
+  <li class="selected">
+    {{link-to 'Past Day' 'status.dashboard' 'pass_day'}}
+  </li>
+  <li>
+    {{link-to 'Past Week' 'status.dashboard' 'pass_week'}}
+  </li>
+  <li>
+    {{link-to 'Past Month' 'status.dashboard' "pass_month"}}
+  </li>
+</ul>
+
+{{#each model as |data index|}}
+  <div class="graph graph-${index}">
+    <div class="graph-header">
+      <h3>{{data.name}}</h3>
+      <p>{{medianValue data.name data.values}}</p>
+    </div>
+    <div class="graph-details">
+      {{chart-line dataset=data index=index range=data.range}}
+    </div>
+  </div>
+{{/each}}
