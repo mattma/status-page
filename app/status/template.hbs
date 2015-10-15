@@ -34,7 +34,7 @@
     {{#each model as |data index|}}
       <div class="graph graph-${index}">
         <div class="graph-header">
-          <p>App Server Availability</p>
+          <p>{{data.name}}</p>
         </div>
         <div class="graph-details">
           {{chart-line data=data index=index}}
