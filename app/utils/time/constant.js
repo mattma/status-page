@@ -1,77 +1,33 @@
 import moment from 'moment';
 
-// Polyfill to handle `Date.now` is not a method
-(function () {
-  if (!Date.now) {
-    Date.now = function now() {
-      return new Date().getTime();
-    };
-  }
-})();
-
-function _today (date) {
-  return date ? new Date(date) : new Date();
-}
-
-function setRange(range) {
-  return range.map(time => parseInt(time / 60 / 60 / 24));
-}
-
 export default {
-  nanoUnix (date) {
+  /**
+   * return unix number representation of the passing Date
+   * @param  {[type]} date an Date
+   * @return Number. an Unix Number representation of the date
+   */
+  getUnixNumberByDate (date) {
     let nanoUnix = moment(date).unix()  / 60 / 60 / 24;
     return parseInt(nanoUnix);
   },
 
+  /**
+   * Get the date/time info by nanoseconds number
+   * @param  {[type]} nanoSeconds ex: 1444785673961426306
+   * @param  {[type]} format http://momentjs.com/docs/#/parsing/string-format/
+   * @return {[type]} a perfect formatted Date/Time
+   */
   getDateByNanoSeconds (nanoSeconds, format) {
     return moment(nanoSeconds / 1000 / 1000).format(format);
   },
 
+  /**
+   * Get the date/time info by unix number
+   * @param  {[type]} unixNumber ex: 16709
+   * @param  {[type]} format http://momentjs.com/docs/#/parsing/string-format/
+   * @return {[type]} a perfect formatted Date/Time
+   */
   getDateByUnixNumber (unixNumber, format) {
     return moment(unixNumber * 1000 * 24 * 60 * 60).format(format);
-  },
-
-  // return current time in millisecond
-  NOW () {
-    return _today();
-  },
-
-  // return 2 digit of current date
-  TODAY () {
-    let D = _today().getDate();
-    D = D < 10 ? ('0'+D) : D;
-    return D;
-  },
-
-  // return 2 digit of current month
-  CURRENT_MONTH () {
-    let M = _today().getMonth() +1;
-    M = M < 10 ? ('0'+M) : M;
-    return M;
-  },
-
-  // return 4 digit year format
-  CURRENT_YEAR () {
-    return _today().getFullYear();
-  },
-
-  /**
-   * Those constants return range value
-   * Unicode range with start and end date
-   */
-
-  /**
-   * Find out the current week
-   */
-  CURRENT_WEEK (timezone='America/Los_Angeles') {
-    // current week range
-    const start = moment().utcOffset(timezone).startOf('week').unix();
-    const end = moment().utcOffset(timezone).unix();
-
-    // previous week range
-    const previous_start = moment().utcOffset(timezone).startOf('week').subtract(1, 'weeks').unix();
-    const previous_end = moment().utcOffset(timezone).startOf('week').subtract(1, 'day').unix();
-
-    return setRange([start, end, previous_start, previous_end]);
   }
 };

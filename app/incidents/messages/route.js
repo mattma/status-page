@@ -8,7 +8,7 @@ export default Ember.Route.extend({
     let range = params.range;
     let endDay;
     if (range === 'current') {
-      endDay = time.nanoUnix(new Date());
+      endDay = time.getUnixNumberByDate(new Date());
     } else {
       if (range.includes('&until=')) {
         endDay = range.split('=')[2];

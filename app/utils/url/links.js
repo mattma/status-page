@@ -4,12 +4,12 @@ import time from 'incident/utils/time/constant';
 export default {
   getWeekLinks (date) {
     let today;
-    const TODAY = time.nanoUnix(new Date());
+    const TODAY = time.getUnixNumberByDate(new Date());
 
     // Current week query. since it sends back as Date
     switch (Ember.typeOf(date)) {
       case 'date':
-        today = time.nanoUnix(date);
+        today = time.getUnixNumberByDate(date);
         break;
       case 'string':
         today = parseInt(date);
