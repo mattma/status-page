@@ -1,0 +1,39 @@
+import Ember from 'ember';
+import ajax from 'incident/utils/ajax/ajax';
+
+export default Ember.Route.extend({
+  model(params) {
+    if (!params.range) {
+      return ;
+    }
+
+    const url = `/stats/`;
+    const opts =  {
+      type: "GET",
+    };
+    let range;
+
+    switch (params.range) {
+      case 'pass_day':
+        range = 'start=2015-10-07T20:10:30.781Z&end=2015-10-08T20:11:00.781Z&step=300s';
+        break;
+      default:
+        range = 'start=2015-10-07T20:10:30.781Z&end=2015-10-08T20:11:00.781Z&step=300s';
+    }
+
+    return ajax(url, opts)
+      .then(resp => {
+        const stats = resp.stats;
+        const urls = stats.map(item => `/stats/${item}?${range}`);
+        return Ember.RSVP.Promise.all(urls.map(u => ajax(u, opts)))
+          .then(data => {
+            // merge the data stats name into the return Promise array
+            return data.map((datum, index) => {
+              datum.name = stats[index];
+              return datum;
+            });
+          });
+      })
+      .catch(err => console.log('err: ', err));
+  }
+});

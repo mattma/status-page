@@ -10,7 +10,9 @@ Router.map(function() {
     this.route('messages', {path: '/:range'});
   });
 
-  this.route('status', {path: '/status/:range'}, function() {});
+  this.route('status', {}, function() {
+    this.route('dashboard', {path: '/:range'});
+  });
 });
 
 export default Router;
