@@ -7,7 +7,6 @@ export default Ember.Route.extend({
       return ;
     }
 
-    // const url = `/stats/up?${params.range}`;
     const url = `/stats/`;
     const opts =  {
       type: "GET",
