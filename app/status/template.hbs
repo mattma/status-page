@@ -18,7 +18,19 @@
     <p>We provide a GitHub Site Status API for consuming this information. If you're a service that integrates with GitHub, you can use these JSON responses to populate your own status dashboard.</p>
   </div>
 
-  <div class="graphs">
+  <section class="graphs">
+    <ul class="tabs">
+      <li class="selected">
+        {{link-to 'Past Day' 'status' 'pass_day'}}
+      </li>
+      <li>
+        {{link-to 'Past Week' 'status' 'pass_week'}}
+      </li>
+      <li>
+        {{link-to 'Past Month' 'status' "pass_month"}}
+      </li>
+    </ul>
+
     {{#each model as |data index|}}
       <div class="graph graph-${index}">
         <div class="graph-header">
@@ -29,5 +41,5 @@
         </div>
       </div>
     {{/each}}
-  </div>
+  </section>
 </section>

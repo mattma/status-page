@@ -11,3 +11,23 @@
 
   &:hover
     +color($hover-color)
+
+.tabs
+  +box(100%, 36)
+  +border(b, #e8e8e8)
+
+  li
+    +float(l)
+
+    &.selected
+      a
+        +color(#333)
+        +borders(#e8e8e8)
+
+  a
+    +fsize(1.3)
+    +fweight(700)
+    +lheight(36)
+    +box(auto, 36)
+    +color(#999)
+    +paddings(0, 10)
