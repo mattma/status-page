@@ -23,8 +23,8 @@ export default {
     return parseInt(nanoUnix);
   },
 
-  getDateByNanoseconds (nanoseconds, format) {
-    return moment(nanoseconds / 1000 / 1000).format(format);
+  getDateByNanoSeconds (nanoSeconds, format) {
+    return moment(nanoSeconds / 1000 / 1000).format(format);
   },
 
   getDateByUnixNumber (unixNumber, format) {
