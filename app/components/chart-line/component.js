@@ -1,10 +1,10 @@
 import Ember from 'ember';
-import format from 'incident/utils/time/format';
+import time from 'incident/utils/time/constant';
 
 function parsedDate(second) {
   let date = new Date(second);
   let parseDate = d3.time.format('%Y-%m-%d').parse;
-  let formattedDate = format.custom(date, "#YYYY#-#mm#-#DD#");
+  let formattedDate = time.format(date, "YYYY-MM-DD");
   return parseDate(formattedDate);
 }
 
