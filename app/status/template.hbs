@@ -19,15 +19,15 @@
   </div>
 
   <div class="graphs">
-    <div class="graph graph-1">
-      <div>
-        <h3>App Server Availability</h3>
-      </div>
-      <div>
-        {{#each model as |data index|}}
+    {{#each model as |data index|}}
+      <div class="graph graph-${index}">
+        <div class="graph-header">
+          <p>App Server Availability</p>
+        </div>
+        <div class="graph-details">
           {{chart-line data=data index=index}}
-        {{/each}}
+        </div>
       </div>
-    </div>
+    {{/each}}
   </div>
 </section>

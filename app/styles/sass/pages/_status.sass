@@ -1,12 +1,24 @@
 .status
-  div
-    +margin(b, 30)
-
-    &:first-child
-      +margin(t, 25)
-
   p
     +margin(b, 15)
 
-  h3
-    +color(#999)
+  .graphs
+    +margins(50, 0)
+
+  .graph
+    +box(100%)
+    +overflow(h)
+    +margin(b, 20)
+
+  .graph-header
+    +grid-column(4)
+
+    p
+      +padding(t, 40)
+      +fsize(1.5)
+      +fweight(700)
+      +color(#999)
+      +ttransform(u)
+
+  .graph-details
+    +grid-column(8, true)

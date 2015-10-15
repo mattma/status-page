@@ -72,7 +72,7 @@ export default Ember.Component.extend({
     let dataset= this.get('data');
     let data = dataset.values;
 
-    container.box(500, 300); // .resize();
+    container.box(420, 160); // .resize();
 
     let canvas = container.canvas().chart("FinalChart", container.info());
 
