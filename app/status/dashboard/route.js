@@ -15,10 +15,17 @@ export default Ember.Route.extend({
 
     switch (params.range) {
       case 'pass_day':
-        range = 'start=2015-10-07T20:10:30.781Z&end=2015-10-08T20:11:00.781Z&step=300s';
+        range = 'start=2015-10-13T20:10:30.781Z&end=2015-10-14T20:11:00.781Z&step=300s';
+        break;
+      case 'pass_week':
+        range = 'start=2015-10-07T20:10:30.781Z&end=2015-10-14T20:11:00.781Z&step=300s';
+        break;
+      case 'pass_month':
+        range = 'start=2015-09-15T20:10:30.781Z&end=2015-10-14T20:11:00.781Z&step=300s';
         break;
       default:
-        range = 'start=2015-10-07T20:10:30.781Z&end=2015-10-08T20:11:00.781Z&step=300s';
+        range = 'start=2015-10-13T20:10:30.781Z&end=2015-10-14T20:11:00.781Z&step=300s';
+        break;
     }
 
     return ajax(url, opts)
