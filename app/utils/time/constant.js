@@ -23,6 +23,14 @@ export default {
     return parseInt(nanoUnix);
   },
 
+  getDateByNanoseconds (nanoseconds, format) {
+    return moment(nanoseconds / 1000 / 1000).format(format);
+  },
+
+  getDateByUnixNumber (unixNumber, format) {
+    return moment(unixNumber * 1000 * 24 * 60 * 60).format(format);
+  },
+
   // return current time in millisecond
   NOW () {
     return _today();
