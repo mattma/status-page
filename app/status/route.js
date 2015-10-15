@@ -15,7 +15,8 @@ export default Ember.Route.extend({
 
     return ajax(url, opts)
       .then(resp => {
-        let urls = resp.stats.map(item => `/stats/${item}?${params.range}`);
+        const stats = resp.stats;
+        const urls = stats.map(item => `/stats/${item}?${params.range}`);
         return Ember.RSVP.Promise.all(urls.map(u => ajax(u, opts)))
       })
       .then(data => data)
