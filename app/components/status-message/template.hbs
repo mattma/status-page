@@ -5,7 +5,7 @@
       {{#each incidents key="@index" as |incident|}}
         <div>
           <p class="status-time">{{timeFormat incident.time 'HH:mm:ss'}} PDT</p>
-          <p class="{{classnameSwitch incident.level 'Critical' 'Warning'}} status-message">{{incident.message}}</p>
+          <p class="{{changeCase incident.level "lower"}} status-message">{{incident.message}}</p>
         </div>
       {{else}}
         <div>
