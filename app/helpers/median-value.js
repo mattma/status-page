@@ -7,7 +7,8 @@ export function medianValue(params/*, hash*/) {
 
   switch (params[0]) {
     case 'up':
-      formattedVal = `${(meanVal * 100).toFixed(1)}%`;
+      let v = meanVal === 1 ? "100.0" : parseFloat(meanVal * 100).toFixed(4);
+      formattedVal = `${v}%`;
       break;
     case 'memory':
       formattedVal = `${meanVal}ms`;
