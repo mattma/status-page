@@ -10,16 +10,6 @@ function parsedDate(second, chartRange) {
       parseDate = d3.time.format('%H:%M').parse;
       formattedDate = time.format((second * 1000), "HH:mm");
       break;
-    case 'pass_week':
-      // parseDate = d3.time.format('%H:%M:%S').parse;
-      // formattedDate = time.format((second * 1000), "HH:mm:ss");
-      // break;
-      break;
-    case 'pass_month':
-      // parseDate = d3.time.format('%H:%M:%S').parse;
-      // formattedDate = time.format((second * 1000), "HH:mm:ss");
-      // break;
-      break;
     default:
       parseDate = d3.time.format('%Y-%m-%d').parse;
       formattedDate = time.format((second * 1000), "YYYY-MM-DD");
@@ -65,9 +55,18 @@ d3.chart('Line').extend('StatusLine', {
 
 d3.chart('Axis').extend('MyAxis', {
   onDataBind: function(data){
-    var chart = chart || this;
+    const chart = chart || this;
+    let formatter;
 
-    chart.xAxis.tickPadding(10).tickFormat(d3.time.format('%H:%M'));
+    switch (chart.info.range) {
+      case 'pass_day':
+        formatter = '%H:%M';
+        break;
+      default:
+        formatter = '%m/%d';
+    }
+
+    chart.xAxis.tickPadding(10).tickFormat(d3.time.format(formatter));
     chart.xAxis.ticks(5);
     chart.yAxis.ticks(2);
 
