@@ -32,14 +32,7 @@
     </ul>
 
     {{#each model as |data index|}}
-      <div class="graph graph-${index}">
-        <div class="graph-header">
-          <p>{{data.name}}</p>
-        </div>
-        <div class="graph-details">
-          {{chart-line data=data index=index}}
-        </div>
-      </div>
+      {{dash-status data=data index=index}}
     {{/each}}
   </section>
 </section>

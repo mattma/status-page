@@ -1,0 +1,9 @@
+<div class="graph graph-${index}">
+  <div class="graph-header">
+    <h3>{{data.name}}</h3>
+    <p>{{medianValue data.name data.values}}</p>
+  </div>
+  <div class="graph-details">
+    {{chart-line data=data index=index}}
+  </div>
+</div>
