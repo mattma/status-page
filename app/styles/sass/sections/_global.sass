@@ -5,3 +5,9 @@
 =helvetica($weight: 400)
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif
   font-weight: $weight
+
+=link-color($base-color: #39c, $hover-color: #036)
+  +color($base-color)
+
+  &:hover
+    +color($hover-color)

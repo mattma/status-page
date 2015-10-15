@@ -1,4 +1,9 @@
-<h3>Status Messages</h3>
+<section class="page-title-section">
+  <h3 class="left">Status Messages</h3>
+  {{#link-to 'status' 'start=2015-10-07T20:10:30.781Z&end=2015-10-08T20:11:00.781Z&step=300s' class="right page-link"}}
+    « Dashboard
+  {{/link-to}}
+</section>
 
 {{status-message model=model.incidents endDate=model.endDate}}
 
