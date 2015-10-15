@@ -32,7 +32,7 @@
     </ul>
 
     {{#each model as |data index|}}
-      {{dash-status data=data index=index range='pass_day'}}
+      {{dash-status data=data index=index range=data.range}}
     {{/each}}
   </section>
 </section>

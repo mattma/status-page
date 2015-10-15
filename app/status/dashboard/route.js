@@ -37,6 +37,7 @@ export default Ember.Route.extend({
             // merge the data stats name into the return Promise array
             return data.map((datum, index) => {
               datum.name = stats[index];
+              datum.range = params.range;
               return datum;
             });
           });
