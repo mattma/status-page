@@ -25,19 +25,35 @@ function domain(data, chart) {
   }
 
   // the name of the stats, can be used to display different type of line chart
-  // const chartName = chart.info.name;
+  const chartName = chart.info.name;
   const chartRange = chart.info.range;
 
-  let min = d3.min(data, d => parsedDate(d[0], chartRange));
-  let max = d3.max(data, d => parsedDate(d[0], chartRange));
+  let timeMin = d3.min(data, d => parsedDate(d[0], chartRange));
+  let timeMax = d3.max(data, d => parsedDate(d[0], chartRange));
 
   let _w = +(chart.base.attr('width'));
   // Setup xScale domain range
-  chart.xScale.domain([min, max]).range([0, _w]);
+  chart.xScale.domain([timeMin, timeMax]).range([0, _w]);
 
   // figure out the lowest min/highest max value on both y-axis
+  let dataMin = d3.min(data, d => +(d[1]));
   let dataMax = d3.max(data, d => +(d[1]));
-  chart.yScale.domain([0, dataMax]);
+
+  switch (chart.info.yAxisUnit) {
+    case 'percent':
+      if (dataMin === dataMax) {
+        dataMax = dataMax;
+        dataMin = dataMax - 0.01;
+      }
+      break;
+    default:
+      if (dataMin === dataMax) {
+        dataMax += dataMax / 2;
+        dataMin -= dataMax / 2;
+      }
+  }
+
+  chart.yScale.domain([dataMin, dataMax]);
 }
 
 d3.chart('Line').extend('StatusLine', {
@@ -56,19 +72,28 @@ d3.chart('Line').extend('StatusLine', {
 d3.chart('Axis').extend('MyAxis', {
   onDataBind: function(data){
     const chart = chart || this;
-    let formatter;
+    let xFormatter;
+    let yFormatter;
 
     switch (chart.info.range) {
       case 'pass_day':
-        formatter = '%H:%M';
+        xFormatter = '%H:%M';
         break;
       default:
-        formatter = '%m/%d';
+        xFormatter = '%m/%d';
     }
 
-    chart.xAxis.tickPadding(10).tickFormat(d3.time.format(formatter));
+    switch (chart.info.yAxisUnit) {
+      case 'percent':
+        yFormatter = ".0%";
+        break;
+      default:
+        yFormatter = "s";
+    }
+
+    chart.xAxis.tickPadding(10).tickFormat(d3.time.format(xFormatter));
     chart.xAxis.ticks(5);
-    chart.yAxis.ticks(2);
+    chart.yAxis.ticks(2).tickFormat(d3.format(yFormatter));
 
     domain(data, chart);
   }
@@ -97,11 +122,22 @@ export default Ember.Component.extend({
     let container = d3.ma.container(`#vis-${this.get('index')}`);
     let dataset= this.get('dataset');
     let data = dataset.values;
+    const chartName= dataset.name;
+    let yAxisUnit;
+
+    switch (chartName) {
+      case 'up':
+        yAxisUnit = 'percent';
+        break;
+      default:
+        yAxisUnit = 'ms';
+    }
 
     container.box(420, 160); // .resize();
 
     let canvas = container.canvas().chart("FinalChart", Ember.merge({
-      name: dataset.name,
+      name: chartName,
+      yAxisUnit: yAxisUnit,
       range: this.get('range')
     }, container.info()));
 
