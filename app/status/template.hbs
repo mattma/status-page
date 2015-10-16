@@ -1,1 +1,24 @@
-{{outlet}}
+<section class="page-title-section">
+  {{#link-to 'incidents.messages' 'current' class="right page-link"}}
+    « More Status History
+  {{/link-to}}
+</section>
+
+<section class="status">
+  <div>
+    <h4>What is this site?</h4>
+
+    <p>We continuously monitor the status of github.com and all its related services. If there are any interruptions in service, a note will be posted here.</p>
+  </div>
+  <div>
+    <h4>What are these graphs?</h4>
+
+    <p>These graphs are sampled periodically from our own internal metrics about the performance and availability of GitHub services. They’re accurate to within a few minutes.</p>
+
+    <p>We provide a GitHub Site Status API for consuming this information. If you're a service that integrates with GitHub, you can use these JSON responses to populate your own status dashboard.</p>
+  </div>
+
+  <section class="graphs">
+    {{outlet}}
+  </section>
+</section>

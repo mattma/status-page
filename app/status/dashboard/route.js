@@ -48,5 +48,13 @@ export default Ember.Route.extend({
           });
       })
       .catch(err => console.log('err: ', err));
+  },
+
+  actions: {
+    loading(transition, originRoute) {
+      Ember.$('.loading-container').removeClass('hide');
+      this.router.one('didTransition', () => Ember.$('.loading-container').addClass('hide'));
+      return true;
+    }
   }
 });

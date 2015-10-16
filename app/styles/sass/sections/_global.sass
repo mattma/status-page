@@ -36,3 +36,78 @@
     +box(auto, 36)
     +color(#999)
     +paddings(0, 15)
+
+
+@-webkit-keyframes spin
+  to
+    transform: rotate(1turn)
+    -webkit-transform: rotate(1turn)
+
+.spinner
+  position: relative
+  display: inline-block
+  width: 5em
+  height: 5em
+  margin: 240px 0 0 46%
+  font-size: 12px
+  text-indent: 999em
+  overflow: hidden
+  animation: spin 1s infinite steps(8)
+
+  &.small
+    font-size: 6px
+
+  &.medium
+    font-size: 14px
+
+  &.large
+    font-size: 20px
+
+  &:before, &:after
+    content: ''
+    /* (container width - part width)/2 */
+    +position(a, 0, 2.25em)
+    +box(0.5em, 1.5em)
+    border-radius: .2em
+    background: #eee
+    box-shadow: 0 3.5em #eee
+    /* container height - part height */
+    transform-origin: 50% 2.5em
+    /* container height / 2 */
+    -webkit-transform-origin: 50% 2.5em
+    /* container height / 2 */
+  > div
+    &:before, &:after
+      content: ''
+      /* (container width - part width)/2 */
+      +position(a, 0, 2.25em)
+      +box(0.5em, 1.5em)
+      border-radius: .2em
+      background: #eee
+      box-shadow: 0 3.5em #eee
+      /* container height - part height */
+      transform-origin: 50% 2.5em
+      /* container height / 2 */
+      -webkit-transform-origin: 50% 2.5em
+      /* container height / 2 */
+  &:before
+    background: $black
+  &:after
+    transform: rotate(-45deg)
+    -webkit-transform: rotate(-45deg)
+    background: #777
+  > div
+    &:before
+      transform: rotate(-90deg)
+      -webkit-transform: rotate(-90deg)
+      background: #999
+    &:after
+      transform: rotate(-135deg)
+      -webkit-transform: rotate(-135deg)
+      background: #bbb
+
+.loading-container
+  +box(100%)
+  min-height: 600px
+  background: rgba(51,51,51, 0.1)
+  +position(a, 0, 0)
