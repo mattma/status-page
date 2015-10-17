@@ -27,6 +27,7 @@ module.exports = function(defaults) {
   app.import('bower_components/d3.ma/d3.ma.css');
   app.import('bower_components/d3/d3.js');
   app.import('bower_components/d3.ma/d3.ma.js');
+  app.import('vendor/globalizer.js');
 
   // Use `app.import` to add additional libraries to the generated
   // output files.

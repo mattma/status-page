@@ -2,8 +2,6 @@
   "predef": [
     "document",
     "window",
-    "d3",
-    "d3.ma",
     "-Promise"
   ],
   "browser": true,

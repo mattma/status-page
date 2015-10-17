@@ -1,5 +1,7 @@
 import Ember from 'ember';
 import time from 'incident/utils/time/constant';
+import d3 from 'd3';
+import d3ma from 'd3.ma';
 
 function parsedDate(second, chartRange) {
   let parseDate;
@@ -119,7 +121,7 @@ d3.chart("FinalChart", {
 
 export default Ember.Component.extend({
   didInsertElement () {
-    let container = d3.ma.container(`#vis-${this.get('index')}`);
+    let container = d3ma.container(`#vis-${this.get('index')}`);
     let dataset= this.get('dataset');
     let data = dataset.values;
     const chartName= dataset.name;
