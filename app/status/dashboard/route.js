@@ -44,14 +44,14 @@ export default Ember.Route.extend({
             return {
               dataset: dataset,
               range: queryRange
-            }
+            };
           });
       })
       .catch(err => console.log('err: ', err));
   },
 
   actions: {
-    loading(transition, originRoute) {
+    loading(/*transition, originRoute*/) {
       Ember.$('.loading-container').removeClass('hide');
       this.router.one('didTransition', () => Ember.$('.loading-container').addClass('hide'));
       return true;

@@ -24,8 +24,8 @@ module.exports = function(defaults) {
   });
 
   app.import('app/styles/reset.css');
-  app.import('bower_components/d3.ma/src/d3.ma.css');
-  app.import('bower_components/d3/d3.min.js');
+  app.import('bower_components/d3.ma/d3.ma.css');
+  app.import('bower_components/d3/d3.js');
   app.import('bower_components/d3.ma/d3.ma.js');
 
   // Use `app.import` to add additional libraries to the generated

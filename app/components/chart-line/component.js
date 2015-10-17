@@ -25,7 +25,7 @@ function domain(data, chart) {
   }
 
   // the name of the stats, can be used to display different type of line chart
-  const chartName = chart.info.name;
+  // const chartName = chart.info.name;
   const chartRange = chart.info.range;
 
   let timeMin = d3.min(data, d => parsedDate(d[0], chartRange));
@@ -101,7 +101,7 @@ d3.chart('Axis').extend('MyAxis', {
 
 d3.chart("FinalChart", {
   initialize: function(containerInfo) {
-    var axis =  this.mixin("MyAxis",  this.base.append("g").classed('axisgroup', true), {
+    this.mixin("MyAxis",  this.base.append("g").classed('axisgroup', true), {
       info: containerInfo,
       x: 'time',
       guide: true,
